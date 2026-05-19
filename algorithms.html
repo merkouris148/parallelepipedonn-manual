@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorithms &mdash; ParallelepipedoNN 3.2.1.6 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=62977aca"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Verification" href="verification.html" />
+    <link rel="prev" title="Guarantees" href="guarantees.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ParallelepipedoNN
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guarantees.html">Guarantees</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parallepipedal-algorithms">Parallepipedal Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.ParallelepipedalSearch"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.ParallelepipedalSearch.__init__"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.TopDownSearch"><code class="docutils literal notranslate"><span class="pre">TopDownSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.TopDownSearch.__init__"><code class="docutils literal notranslate"><span class="pre">TopDownSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.CompleteBottomUpSearch"><code class="docutils literal notranslate"><span class="pre">CompleteBottomUpSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.CompleteBottomUpSearch.__init__"><code class="docutils literal notranslate"><span class="pre">CompleteBottomUpSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpLinearDFS"><code class="docutils literal notranslate"><span class="pre">BottomUpLinearDFS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpLinearDFS.__init__"><code class="docutils literal notranslate"><span class="pre">BottomUpLinearDFS.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS"><code class="docutils literal notranslate"><span class="pre">BottomUpDichotomicDFS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS.__init__"><code class="docutils literal notranslate"><span class="pre">BottomUpDichotomicDFS.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpBFS"><code class="docutils literal notranslate"><span class="pre">BottomUpBFS</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.parallelepipedal.BottomUpBFS.__init__"><code class="docutils literal notranslate"><span class="pre">BottomUpBFS.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cyclic-algorithms">Cyclic Algorithms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.cyclic.CyclicSearch"><code class="docutils literal notranslate"><span class="pre">CyclicSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.cyclic.CyclicSearch.__init__"><code class="docutils literal notranslate"><span class="pre">CyclicSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.cyclic.TopDownSearch"><code class="docutils literal notranslate"><span class="pre">TopDownSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.cyclic.TopDownSearch.__init__"><code class="docutils literal notranslate"><span class="pre">TopDownSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.cyclic.BottomUpLinearSearch"><code class="docutils literal notranslate"><span class="pre">BottomUpLinearSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.cyclic.BottomUpLinearSearch.__init__"><code class="docutils literal notranslate"><span class="pre">BottomUpLinearSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.cyclic.BottomUpDichotomicSearch"><code class="docutils literal notranslate"><span class="pre">BottomUpDichotomicSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.cyclic.BottomUpDichotomicSearch.__init__"><code class="docutils literal notranslate"><span class="pre">BottomUpDichotomicSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms.cyclic.CompleteBottomUpDichotomicSearch"><code class="docutils literal notranslate"><span class="pre">CompleteBottomUpDichotomicSearch</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algorithms.cyclic.CompleteBottomUpDichotomicSearch.__init__"><code class="docutils literal notranslate"><span class="pre">CompleteBottomUpDichotomicSearch.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perceptrons.html">Perceptrons</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ParallelepipedoNN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Algorithms</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/algorithms.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="algorithms">
+<h1>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading">¶</a></h1>
+<p>The supported algorithms.</p>
+<section id="parallepipedal-algorithms">
+<h2>Parallepipedal Algorithms<a class="headerlink" href="#parallepipedal-algorithms" title="Permalink to this heading">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-51387993d2b75eedba9c0e90a2f425d1120adf4b.png" alt="Inheritance diagram of algorithms.parallelepipedal" usemap="#inheritancea1544d654f" class="inheritance graphviz" /></div>
+<map id="inheritancea1544d654f" name="inheritancea1544d654f">
+<area shape="rect" id="node1" href="#algorithms.parallelepipedal.BottomUpBFS" target="_top" title="#### Description:" alt="" coords="442,5,553,33"/>
+<area shape="rect" id="node2" href="#algorithms.parallelepipedal.ParallelepipedalSearch" target="_top" title="Description:" alt="" coords="183,109,352,137"/>
+<area shape="rect" id="node3" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS" target="_top" title="* A search algorithm implementing a bottom up dichotomic search in" alt="" coords="404,57,590,85"/>
+<area shape="rect" id="node4" href="#algorithms.parallelepipedal.BottomUpLinearDFS" target="_top" title="Description:" alt="" coords="421,109,573,137"/>
+<area shape="rect" id="node5" href="#algorithms.parallelepipedal.CompleteBottomUpSearch" target="_top" title="Description:" alt="" coords="400,161,594,189"/>
+<area shape="rect" id="node7" href="#algorithms.parallelepipedal.TopDownSearch" target="_top" title="Description:" alt="" coords="435,213,559,241"/>
+</map><span class="target" id="module-algorithms.parallelepipedal"></span><dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.ParallelepipedalSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">ParallelepipedalSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">NNVerification</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.ParallelepipedalSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+The top class of search algorithms for parallelepipedal guarantees.
+Each of the inherited classes needs to define a search method.
+This search method should take as input a parallelepipedal guarantee.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.ParallelepipedalSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">NNVerification</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.ParallelepipedalSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.TopDownSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">TopDownSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.TopDownSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* A search algorithm implementing a top down search in
+the guarantee space.
+* The guarantee passed to the search() method needs to
+have defined a constrain() method that takes as input a
+counterexample and returns a refined guarantee that
+excludes the given counterexample.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.TopDownSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.TopDownSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.CompleteBottomUpSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">CompleteBottomUpSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.CompleteBottomUpSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* A search algorithm implementing a bottom up search in
+the guarantee space.
+* computing a complete approximation
+* The guarantee passed to the search() method needs to
+have defined a concatenate() method that takes as input a
+counterexample and returns a refined guarantee that
+excludes the given counterexample.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.CompleteBottomUpSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.CompleteBottomUpSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpLinearDFS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">BottomUpLinearDFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpLinearDFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Description:
+* A search algorithm implementing a bottom up linear search in
+the space of guarantees.
+* Expanding one feature at the time.
+* The guarantee passed to the search() method needs to
+have defined the following methods:
+* <cite>expand_ub(i, j)</cite>
+* <cite>expand_lb(i, j)</cite>
+* <cite>revert_expand_ub(i, j)</cite>
+* <cite>revert_expand_lb(i, j)</cite></p>
+<p>See also:
+Used in the paper: “Delivering Inflated Explanations” - Y. Izza et al. (2024)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpLinearDFS.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpLinearDFS.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpDichotomicDFS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">BottomUpDichotomicDFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS" title="Permalink to this definition">¶</a></dt>
+<dd><ul class="simple">
+<li><p>A search algorithm implementing a bottom up dichotomic search in</p></li>
+</ul>
+<p>the space of guarantees.
+* Expanding one feature at the time.
+* The guarantee passed to the search() method needs to
+have defined the following operations:</p>
+<ul class="simple">
+<li><p><cite>expand_dichotomic_ub(i, j)</cite></p></li>
+<li><p><cite>expand_dichotomic_lb(i, j)</cite></p></li>
+<li><p><cite>up_high_pivot(i, j)</cite></p></li>
+<li><p><cite>down_high_pivot(i, j)</cite></p></li>
+<li><p><cite>up_low_pivot(i, j)</cite></p></li>
+<li><p><cite>down_low_pivot(i, j)</cite></p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpDichotomicDFS.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpBFS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">BottomUpBFS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpBFS" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Description:
+* A search algorithm implementing a bottom up search in
+the space of guarantees.
+* Expanding one feature at the time.
+* The guarantee passed to the search() method needs to
+have defined the following methods:
+* <cite>expand_ub(i, j)</cite>
+* <cite>expand_lb(i, j)</cite>
+* <cite>revert_expand_ub(i, j)</cite>
+* <cite>revert_expand_lb(i, j)</cite></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.parallelepipedal.BottomUpBFS.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.parallelepipedal.BottomUpBFS.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="cyclic-algorithms">
+<h2>Cyclic Algorithms<a class="headerlink" href="#cyclic-algorithms" title="Permalink to this heading">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-8ececc4c421490761bee0723b174e266a7839afe.png" alt="Inheritance diagram of algorithms.cyclic" usemap="#inheritancea0bb5cd773" class="inheritance graphviz" /></div>
+<map id="inheritancea0bb5cd773" name="inheritancea0bb5cd773">
+<area shape="rect" id="node1" href="#algorithms.cyclic.BottomUpDichotomicSearch" target="_top" title="#### Desrciption:" alt="" coords="366,5,572,33"/>
+<area shape="rect" id="node2" href="#algorithms.cyclic.CyclicSearch" target="_top" title="#### Description:" alt="" coords="183,84,287,112"/>
+<area shape="rect" id="node3" href="#algorithms.cyclic.BottomUpLinearSearch" target="_top" title="#### Description:" alt="" coords="384,57,555,85"/>
+<area shape="rect" id="node4" href="#algorithms.cyclic.CompleteBottomUpDichotomicSearch" target="_top" title="#### Desrciption:" alt="" coords="335,109,603,137"/>
+<area shape="rect" id="node6" href="#algorithms.cyclic.TopDownSearch" target="_top" title="#### Description:" alt="" coords="407,161,531,189"/>
+</map><span class="target" id="module-algorithms.cyclic"></span><dl class="py class">
+<dt class="sig sig-object py" id="algorithms.cyclic.CyclicSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.cyclic.</span></span><span class="sig-name descname"><span class="pre">CyclicSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">NNVerification</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.CyclicSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Description:
+The top class of search algorithms for cyclic guarantees.
+Each of the inherited classes needs to define a search method.
+This search method should take as input a cyclic guarantee.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.cyclic.CyclicSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">NNVerification</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#algorithms.cyclic.CyclicSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.cyclic.TopDownSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.cyclic.</span></span><span class="sig-name descname"><span class="pre">TopDownSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.TopDownSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Description:
+* A search algorithm implementing a top down search in
+the guarantee space.
+* The guarantee passed to the search() method needs to
+have defined a constrain() method that takes as input a
+counterexample and returns a refined guarantee that
+excludes the given counterexample.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.cyclic.TopDownSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.TopDownSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.cyclic.BottomUpLinearSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.cyclic.</span></span><span class="sig-name descname"><span class="pre">BottomUpLinearSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.BottomUpLinearSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Description:
+* A search algorithm implementing a bottom up search in
+the space of guarantees.
+* The guarantee passed to the search() method needs to
+have defined an <cite>expand()</cite> method.
+* Primarly used for cyclic guarantees</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.cyclic.BottomUpLinearSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.BottomUpLinearSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.cyclic.BottomUpDichotomicSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.cyclic.</span></span><span class="sig-name descname"><span class="pre">BottomUpDichotomicSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.BottomUpDichotomicSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Desrciption:
+* A search algorithm implementing a bottom up dichotomic
+search in the space of guarantees.
+* The guarantee passed to the search() method needs to
+have defined an <cite>expand_dichotomic()</cite> method.
+* Primarly used for cyclic guarantees</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.cyclic.BottomUpDichotomicSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.BottomUpDichotomicSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="algorithms.cyclic.CompleteBottomUpDichotomicSearch">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">algorithms.cyclic.</span></span><span class="sig-name descname"><span class="pre">CompleteBottomUpDichotomicSearch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.CompleteBottomUpDichotomicSearch" title="Permalink to this definition">¶</a></dt>
+<dd><p>#### Desrciption:
+* A search algorithm implementing a bottom up dichotomic
+search in the space of guarantees.
+* The guarantee passed to the search() method needs to
+have defined an <cite>expand_dichotomic()</cite> method.
+* Primarly used for cyclic guarantees</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="algorithms.cyclic.CompleteBottomUpDichotomicSearch.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">isSAT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_it</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#algorithms.cyclic.CompleteBottomUpDichotomicSearch.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guarantees.html" class="btn btn-neutral float-left" title="Guarantees" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="verification.html" class="btn btn-neutral float-right" title="Verification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Merkouris Papamichail.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

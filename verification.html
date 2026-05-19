@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verification &mdash; ParallelepipedoNN 3.2.1.6 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=62977aca"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Perceptrons" href="perceptrons.html" />
+    <link rel="prev" title="Algorithms" href="algorithms.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ParallelepipedoNN
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guarantees.html">Guarantees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-verification.marabou">Marabou Based Verification Oracles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#verification.marabou.marabou2numpy"><code class="docutils literal notranslate"><span class="pre">marabou2numpy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verification.marabou.MarabouVerification"><code class="docutils literal notranslate"><span class="pre">MarabouVerification</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.__init__"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.check_witness"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.check_witness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.predict"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.predict_argmax"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.predict_argmax()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.__call__"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.__call__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.MarabouVerification.__module__"><code class="docutils literal notranslate"><span class="pre">MarabouVerification.__module__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#verification.marabou.SoundMarabouVerifier"><code class="docutils literal notranslate"><span class="pre">SoundMarabouVerifier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.SoundMarabouVerifier.__init__"><code class="docutils literal notranslate"><span class="pre">SoundMarabouVerifier.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.SoundMarabouVerifier.__call__"><code class="docutils literal notranslate"><span class="pre">SoundMarabouVerifier.__call__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.SoundMarabouVerifier.check_witness"><code class="docutils literal notranslate"><span class="pre">SoundMarabouVerifier.check_witness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.SoundMarabouVerifier.__module__"><code class="docutils literal notranslate"><span class="pre">SoundMarabouVerifier.__module__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#verification.marabou.CompleteMarabouVerifier"><code class="docutils literal notranslate"><span class="pre">CompleteMarabouVerifier</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.CompleteMarabouVerifier.__init__"><code class="docutils literal notranslate"><span class="pre">CompleteMarabouVerifier.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.CompleteMarabouVerifier.__call__"><code class="docutils literal notranslate"><span class="pre">CompleteMarabouVerifier.__call__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.CompleteMarabouVerifier.check_witness"><code class="docutils literal notranslate"><span class="pre">CompleteMarabouVerifier.check_witness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification.marabou.CompleteMarabouVerifier.__module__"><code class="docutils literal notranslate"><span class="pre">CompleteMarabouVerifier.__module__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="perceptrons.html">Perceptrons</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ParallelepipedoNN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Verification</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/verification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="verification">
+<h1>Verification<a class="headerlink" href="#verification" title="Permalink to this heading">¶</a></h1>
+<p>Verification oracles used in our algorithms. All are based
+on the Marabou verifier</p>
+<section id="module-verification.marabou">
+<span id="marabou-based-verification-oracles"></span><h2>Marabou Based Verification Oracles<a class="headerlink" href="#module-verification.marabou" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="verification.marabou.marabou2numpy">
+<span class="sig-prename descclassname"><span class="pre">verification.marabou.</span></span><span class="sig-name descname"><span class="pre">marabou2numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counterexample_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_first_n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column_dim</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.marabou2numpy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">verification.marabou.</span></span><span class="sig-name descname"><span class="pre">MarabouVerification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NNVerification</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.check_witness">
+<span class="sig-name descname"><span class="pre">check_witness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">witness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification.check_witness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.predict_argmax">
+<span class="sig-name descname"><span class="pre">predict_argmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification.predict_argmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.MarabouVerification.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="verification.marabou.MarabouVerification.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'verification.marabou'</span></em><a class="headerlink" href="#verification.marabou.MarabouVerification.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="verification.marabou.SoundMarabouVerifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">verification.marabou.</span></span><span class="sig-name descname"><span class="pre">SoundMarabouVerifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.SoundMarabouVerifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#verification.marabou.MarabouVerification" title="verification.marabou.MarabouVerification"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarabouVerification</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.SoundMarabouVerifier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.SoundMarabouVerifier.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.SoundMarabouVerifier.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.SoundMarabouVerifier.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.SoundMarabouVerifier.check_witness">
+<span class="sig-name descname"><span class="pre">check_witness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">witness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.SoundMarabouVerifier.check_witness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="verification.marabou.SoundMarabouVerifier.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'verification.marabou'</span></em><a class="headerlink" href="#verification.marabou.SoundMarabouVerifier.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="verification.marabou.CompleteMarabouVerifier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">verification.marabou.</span></span><span class="sig-name descname"><span class="pre">CompleteMarabouVerifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.CompleteMarabouVerifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#verification.marabou.MarabouVerification" title="verification.marabou.MarabouVerification"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarabouVerification</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.CompleteMarabouVerifier.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path_onnx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.CompleteMarabouVerifier.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.CompleteMarabouVerifier.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.CompleteMarabouVerifier.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="verification.marabou.CompleteMarabouVerifier.check_witness">
+<span class="sig-name descname"><span class="pre">check_witness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">witness</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#verification.marabou.CompleteMarabouVerifier.check_witness" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="verification.marabou.CompleteMarabouVerifier.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'verification.marabou'</span></em><a class="headerlink" href="#verification.marabou.CompleteMarabouVerifier.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="algorithms.html" class="btn btn-neutral float-left" title="Algorithms" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="perceptrons.html" class="btn btn-neutral float-right" title="Perceptrons" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Merkouris Papamichail.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guarantees &mdash; ParallelepipedoNN 3.2.1.6 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=62977aca"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algorithms" href="algorithms.html" />
+    <link rel="prev" title="Geometry" href="geometry.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ParallelepipedoNN
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Guarantees</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parallepipedal-guarantees">Parallepipedal Guarantees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.__init__"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.__copy__"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.__copy__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.set_bounds"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.set_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_ub"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.expand_dichotomic_ub()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_lb"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.expand_dichotomic_lb()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.down_high_pivot"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.down_high_pivot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.get_interval"><code class="docutils literal notranslate"><span class="pre">ParallelepipedalGuarantee.get_interval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.TopParallelGuarantee"><code class="docutils literal notranslate"><span class="pre">TopParallelGuarantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.TopParallelGuarantee.__init__"><code class="docutils literal notranslate"><span class="pre">TopParallelGuarantee.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.BottomParallelGurantee"><code class="docutils literal notranslate"><span class="pre">BottomParallelGurantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.BottomParallelGurantee.__init__"><code class="docutils literal notranslate"><span class="pre">BottomParallelGurantee.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.DistParallelGurantee"><code class="docutils literal notranslate"><span class="pre">DistParallelGurantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.DistParallelGurantee.__init__"><code class="docutils literal notranslate"><span class="pre">DistParallelGurantee.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.TopDistParallelGurantee"><code class="docutils literal notranslate"><span class="pre">TopDistParallelGurantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.TopDistParallelGurantee.__init__"><code class="docutils literal notranslate"><span class="pre">TopDistParallelGurantee.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.parallelepipedal.BottomDistParallelGurantee"><code class="docutils literal notranslate"><span class="pre">BottomDistParallelGurantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.parallelepipedal.BottomDistParallelGurantee.__init__"><code class="docutils literal notranslate"><span class="pre">BottomDistParallelGurantee.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cyclic-guarantees">Cyclic Guarantees</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.cyclic.CyclicGuarantee"><code class="docutils literal notranslate"><span class="pre">CyclicGuarantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.cyclic.CyclicGuarantee.__init__"><code class="docutils literal notranslate"><span class="pre">CyclicGuarantee.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.cyclic.CyclicGuarantee.get_interval"><code class="docutils literal notranslate"><span class="pre">CyclicGuarantee.get_interval()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.cyclic.TopCyclicGuarantee"><code class="docutils literal notranslate"><span class="pre">TopCyclicGuarantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.cyclic.TopCyclicGuarantee.__init__"><code class="docutils literal notranslate"><span class="pre">TopCyclicGuarantee.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#guarantees.cyclic.BottomCyclicGuarantee"><code class="docutils literal notranslate"><span class="pre">BottomCyclicGuarantee</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#guarantees.cyclic.BottomCyclicGuarantee.__init__"><code class="docutils literal notranslate"><span class="pre">BottomCyclicGuarantee.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="perceptrons.html">Perceptrons</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ParallelepipedoNN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Guarantees</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/guarantees.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="guarantees">
+<h1>Guarantees<a class="headerlink" href="#guarantees" title="Permalink to this heading">¶</a></h1>
+<p>Families of interval certifications.</p>
+<section id="parallepipedal-guarantees">
+<h2>Parallepipedal Guarantees<a class="headerlink" href="#parallepipedal-guarantees" title="Permalink to this heading">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-782b728f1cd1720e85a9d5148cb802f509ea917e.png" alt="Inheritance diagram of guarantees.parallelepipedal" usemap="#inheritancef7863675e8" class="inheritance graphviz" /></div>
+<map id="inheritancef7863675e8" name="inheritancef7863675e8">
+<area shape="rect" id="node1" href="#guarantees.parallelepipedal.BottomDistParallelGurantee" target="_top" title="BottomDistParallelGurantee" alt="" coords="568,5,763,32"/>
+<area shape="rect" id="node2" href="#guarantees.parallelepipedal.DistParallelGurantee" target="_top" title="DistParallelGurantee" alt="" coords="362,29,511,56"/>
+<area shape="rect" id="node6" href="#guarantees.parallelepipedal.TopDistParallelGurantee" target="_top" title="TopDistParallelGurantee" alt="" coords="580,55,750,82"/>
+<area shape="rect" id="node3" href="#guarantees.parallelepipedal.BottomParallelGurantee" target="_top" title="BottomParallelGurantee" alt="" coords="352,79,522,106"/>
+<area shape="rect" id="node4" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee" target="_top" title="**Description:**" alt="" coords="120,79,306,106"/>
+<area shape="rect" id="node7" href="#guarantees.parallelepipedal.TopParallelGuarantee" target="_top" title="TopParallelGuarantee" alt="" coords="360,129,513,156"/>
+<area shape="rect" id="node5" href="geometry.html#geometry.interval.Interval" target="_top" title="A class encoding a *high&#45;dimensional* interval ``[lb, ub]``, where" alt="" coords="5,79,74,106"/>
+</map><span class="target" id="module-guarantees.parallelepipedal"></span><dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">ParallelepipedalGuarantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#geometry.interval.Interval" title="geometry.interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong></p>
+<p>A class encoding a stability guarantee. Essentially
+a stability guarantee is an <em>interval</em> of the form
+<code class="docutils literal notranslate"><span class="pre">[lb,</span> <span class="pre">ub]</span></code>, where <cite>lb, ub</cite> are <em>vectors</em> of the
+<code class="docutils literal notranslate"><span class="pre">domain</span></code> input space.</p>
+<p><strong>Guarantee Refinement Operations:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">constrain(x^c)</span></code>: Excludes the counterexample x^c from the guarantee.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expand()</span></code>: Expands the guarantee (every coordinate of lb, ub) by delta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expand_ub(i,</span> <span class="pre">j)</span></code>: Expand by delta only the (i,j)-th coordinate of ub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expand_lb(i,</span> <span class="pre">j)</span></code>: Expand by delta only the (i,j)-th coordinate of lb.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revert_expand_ub(i,</span> <span class="pre">j)</span></code>: Reduces by delta the (i, j)-th coordinate of ub.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revert_expand_lb(i,</span> <span class="pre">j)</span></code>: Reduces by delta the (i, j)-th coordinate of lb.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#geometry.interval.Interval" title="geometry.interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.__copy__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy constructor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.set_bounds">
+<span class="sig-name descname"><span class="pre">set_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_lb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_ub</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.set_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong></p>
+<p>Setting the bounds of a <em>parallelepipedal</em> guarantee.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_ub">
+<span class="sig-name descname"><span class="pre">expand_dichotomic_ub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_ub" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong></p>
+<p>The expand <code class="docutils literal notranslate"><span class="pre">ub</span></code> operation used in Bottom-Up Dichotomic DFS.</p>
+<p><strong>Percondition:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ub</span></code> in <code class="docutils literal notranslate"><span class="pre">[high_pivot.lb,</span> <span class="pre">high_pivot.ub]</span></code>, with either</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ub</span> <span class="pre">=</span> <span class="pre">high_pivot.lb</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ub</span> <span class="pre">=</span> <span class="pre">high_pivot.ub</span></code></p></li>
+</ul>
+<p><strong>Postcondition:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ub</span> <span class="pre">=</span> <span class="pre">high_pivot.lb</span> <span class="pre">+</span> <span class="pre">(high_pivot.ub</span> <span class="pre">-</span> <span class="pre">high_pivot.lb)/2</span></code></p></li>
+<li><p>the precondition still holds.</p></li>
+</ul>
+<p><strong>Output:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">False</span></code> is returned iff the expnasion does not exceed the domain.
+Namely, iff <code class="docutils literal notranslate"><span class="pre">new_ub_ij</span> <span class="pre">&gt;</span> <span class="pre">dom_ub_ij</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_lb">
+<span class="sig-name descname"><span class="pre">expand_dichotomic_lb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.expand_dichotomic_lb" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong></p>
+<p>The expand <code class="docutils literal notranslate"><span class="pre">lb</span></code> operation used in Bottom-Up Dichotomic DFS.</p>
+<p><strong>Percondition:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">lb</span></code> in <code class="docutils literal notranslate"><span class="pre">[low_pivot.lb,</span> <span class="pre">low_pivot.ub]</span></code>, with either:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">=</span> <span class="pre">low_pivot.lb</span></code>, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">=</span> <span class="pre">low_pivot.ub</span></code></p></li>
+</ul>
+<p><strong>Postcondition:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lb</span> <span class="pre">=</span> <span class="pre">low_pivot.lb</span> <span class="pre">+</span> <span class="pre">(low_pivot.ub</span> <span class="pre">-</span> <span class="pre">low_pivot.lb)/2</span></code></p></li>
+<li><p>the precondition still holds.</p></li>
+</ul>
+<p><strong>Output:</strong></p>
+<p><cite>False</cite> is returned iff the expnasion does not exceed the domain.
+Namely, iff <cite>new_lb_ij &lt; dom_lb_ij</cite></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.down_high_pivot">
+<span class="sig-name descname"><span class="pre">down_high_pivot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.down_high_pivot" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong></p>
+<p>Refinement of the <cite>high_pivot</cite>, used in Bottom-Up Dichtomic DFS.</p>
+<p><strong>Percondition:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ub</span></code> in <code class="docutils literal notranslate"><span class="pre">[high_pivot.lb,</span> <span class="pre">high_pivot.ub]</span></code>, with
+<code class="docutils literal notranslate"><span class="pre">ub</span> <span class="pre">=</span> <span class="pre">high_pivot.lb</span> <span class="pre">+</span> <span class="pre">(high_pivot.ub</span> <span class="pre">-</span> <span class="pre">high_pivot.lb)/2</span></code></p>
+<p><strong>Postcondition:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">high_pivot.ub</span> <span class="pre">=</span> <span class="pre">ub</span></code></p>
+<p><strong>Notes:</strong></p>
+<p>We use this operation when the current guarantee is NOT
+sound. If <code class="docutils literal notranslate"><span class="pre">[lb,</span> <span class="pre">ub]</span></code> the current guarantee and there is a
+counterexample <code class="docutils literal notranslate"><span class="pre">x^c</span></code> in <code class="docutils literal notranslate"><span class="pre">[lb,</span> <span class="pre">ub]</span></code>, then there will also
+be a counterexample <code class="docutils literal notranslate"><span class="pre">x^c</span></code> in <code class="docutils literal notranslate"><span class="pre">[lb,</span> <span class="pre">high_pivot.ub]</span></code>. Thus, we
+need to lower the <code class="docutils literal notranslate"><span class="pre">high_pivot.ub</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.ParallelepipedalGuarantee.get_interval">
+<span class="sig-name descname"><span class="pre">get_interval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee.get_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Conversions:</strong></p>
+<p>Returns itself. Dummy function for compatability with
+cyclic guarantees.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.TopParallelGuarantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">TopParallelGuarantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.TopParallelGuarantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.TopParallelGuarantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.TopParallelGuarantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.BottomParallelGurantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">BottomParallelGurantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.BottomParallelGurantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.BottomParallelGurantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.BottomParallelGurantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.DistParallelGurantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">DistParallelGurantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.DistParallelGurantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.DistParallelGurantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.DistParallelGurantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.TopDistParallelGurantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">TopDistParallelGurantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.TopDistParallelGurantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.TopDistParallelGurantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.TopDistParallelGurantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.BottomDistParallelGurantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.parallelepipedal.</span></span><span class="sig-name descname"><span class="pre">BottomDistParallelGurantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.BottomDistParallelGurantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.parallelepipedal.BottomDistParallelGurantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.parallelepipedal.BottomDistParallelGurantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The default constructor.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="cyclic-guarantees">
+<h2>Cyclic Guarantees<a class="headerlink" href="#cyclic-guarantees" title="Permalink to this heading">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-ebab3da4682bca243a0050a503f273fbbc2a9d1e.png" alt="Inheritance diagram of guarantees.cyclic" usemap="#inheritance659a49353e" class="inheritance graphviz" /></div>
+<map id="inheritance659a49353e" name="inheritance659a49353e">
+<area shape="rect" id="node1" href="#guarantees.cyclic.BottomCyclicGuarantee" target="_top" title="BottomCyclicGuarantee" alt="" coords="425,5,601,33"/>
+<area shape="rect" id="node2" href="#guarantees.cyclic.CyclicGuarantee" target="_top" title="CyclicGuarantee" alt="" coords="249,32,377,60"/>
+<area shape="rect" id="node5" href="#guarantees.cyclic.TopCyclicGuarantee" target="_top" title="TopCyclicGuarantee" alt="" coords="438,57,588,85"/>
+<area shape="rect" id="node3" href="geometry.html#geometry.circle.Circle" target="_top" title="* The base class for circles." alt="" coords="5,32,77,60"/>
+<area shape="rect" id="node4" href="geometry.html#geometry.circle.InfCircle" target="_top" title="* The infinity&#45;norm circle." alt="" coords="125,32,201,60"/>
+</map><span class="target" id="module-guarantees.cyclic"></span><dl class="py class">
+<dt class="sig sig-object py" id="guarantees.cyclic.CyclicGuarantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.cyclic.</span></span><span class="sig-name descname"><span class="pre">CyclicGuarantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.CyclicGuarantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.cyclic.CyclicGuarantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.CyclicGuarantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="guarantees.cyclic.CyclicGuarantee.get_interval">
+<span class="sig-name descname"><span class="pre">get_interval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.CyclicGuarantee.get_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the l_+oo circle to interval. Note that
+l_+oo circles correspond to hyper-cubes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.cyclic.TopCyclicGuarantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.cyclic.</span></span><span class="sig-name descname"><span class="pre">TopCyclicGuarantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.TopCyclicGuarantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.cyclic.TopCyclicGuarantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.TopCyclicGuarantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="guarantees.cyclic.BottomCyclicGuarantee">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">guarantees.cyclic.</span></span><span class="sig-name descname"><span class="pre">BottomCyclicGuarantee</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.BottomCyclicGuarantee" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="guarantees.cyclic.BottomCyclicGuarantee.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_star</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_restriction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#guarantees.cyclic.BottomCyclicGuarantee.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="geometry.html" class="btn btn-neutral float-left" title="Geometry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="algorithms.html" class="btn btn-neutral float-right" title="Algorithms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Merkouris Papamichail.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

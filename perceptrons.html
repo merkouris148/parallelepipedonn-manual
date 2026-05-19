@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perceptrons &mdash; ParallelepipedoNN 3.2.1.6 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=62977aca"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Verification" href="verification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ParallelepipedoNN
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guarantees.html">Guarantees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algorithms.html">Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="verification.html">Verification</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Perceptrons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-perceptrons.abstract">Abstract Multilayer Perceptrons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract"><code class="docutils literal notranslate"><span class="pre">MLPAbstract</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.__init__"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.adhoc_loss"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.adhoc_loss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.adhoc_accuracy"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.adhoc_accuracy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.predict"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.scores"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.scores()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.report"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.report()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.report2file"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.report2file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.export2onnx"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.export2onnx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.get_weights"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.get_weights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.set_weights"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.set_weights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.export2csv"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.export2csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.export2npz"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.export2npz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.__subclasshook__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.abstract.MLPAbstract.__weakref__"><code class="docutils literal notranslate"><span class="pre">MLPAbstract.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tensorflow-implementation">TensorFlow Implementation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__init__"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.adhoc_loss"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.adhoc_loss()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.predict"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.scores"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.scores()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__str__"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.__str__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.report"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.report()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.report2file"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.report2file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.export2onnx"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.export2onnx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.export2csv"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.export2csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.set_weights"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.set_weights()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.build"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.build()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.propagate_bounds"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.propagate_bounds()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">TFMLPBaseClass.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.tfmultilayer.FromArchitecture"><code class="docutils literal notranslate"><span class="pre">FromArchitecture</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromArchitecture.__init__"><code class="docutils literal notranslate"><span class="pre">FromArchitecture.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromArchitecture.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">FromArchitecture.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.tfmultilayer.FromWeights"><code class="docutils literal notranslate"><span class="pre">FromWeights</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromWeights.__init__"><code class="docutils literal notranslate"><span class="pre">FromWeights.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromWeights.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">FromWeights.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.tfmultilayer.FromDir"><code class="docutils literal notranslate"><span class="pre">FromDir</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromDir.__init__"><code class="docutils literal notranslate"><span class="pre">FromDir.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromDir.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">FromDir.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#perceptrons.tfmultilayer.FromRandom"><code class="docutils literal notranslate"><span class="pre">FromRandom</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromRandom.__init__"><code class="docutils literal notranslate"><span class="pre">FromRandom.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#perceptrons.tfmultilayer.FromRandom.__subclasshook__"><code class="docutils literal notranslate"><span class="pre">FromRandom.__subclasshook__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ParallelepipedoNN</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Perceptrons</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/perceptrons.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="perceptrons">
+<h1>Perceptrons<a class="headerlink" href="#perceptrons" title="Permalink to this heading">¶</a></h1>
+<section id="module-perceptrons.abstract">
+<span id="abstract-multilayer-perceptrons"></span><h2>Abstract Multilayer Perceptrons<a class="headerlink" href="#module-perceptrons.abstract" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.abstract.</span></span><span class="sig-name descname"><span class="pre">MLPAbstract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<p>The Base Class for Multilayered Perceptrons. This class models a specific
+class of NN of the form:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Flatten</span><span class="p">,</span> <span class="n">input_shpae</span><span class="p">],</span>
+<span class="p">[</span><span class="n">Dense</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">dim_0</span><span class="p">],</span>
+<span class="p">[</span><span class="n">Dense</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">dim_1</span><span class="p">],</span>
+<span class="o">...</span>
+<span class="p">[</span><span class="n">Dense</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">dim_</span><span class="p">(</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>This defines a L-layered MLP of the form <code class="docutils literal notranslate"><span class="pre">Z:IR^(dim_0)</span> <span class="pre">--&gt;</span> <span class="pre">IR^(d_(L-1))</span></code>.</p>
+<p><strong>Data Members:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">architecture:</span> <span class="pre">List[int]</span></code>, a list containing the dimensions of each layer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_layers:</span> <span class="pre">int</span></code>, the number of layers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape:</span> <span class="pre">Tuple[int]</span></code>, the shape on the inputs <em>before</em> flattening.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_dim:</span> <span class="pre">int</span></code>, the output dimension.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">W:</span> <span class="pre">List[ndarray]</span></code>, the list of weights.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b:</span> <span class="pre">List[ndarray]</span></code>, the list of biases. Naturally.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X_train,</span> <span class="pre">X_test:</span> <span class="pre">ndarray</span></code>, the training datapoints.</p></li>
+</ul>
+<p><strong>Invariants:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">architecture</span> <span class="pre">=</span> <span class="pre">[dim_0,</span> <span class="pre">dim_1,</span> <span class="pre">...,</span> <span class="pre">dim_(L-1)]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_layers</span> <span class="pre">==</span> <span class="pre">len(architecture)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_dim</span> <span class="pre">==</span> <span class="pre">architecture[-1]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">len(W)</span> <span class="pre">==</span> <span class="pre">len(b)</span> <span class="pre">==</span> <span class="pre">len(architecture)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X_tain.shape</span> <span class="pre">==</span> <span class="pre">(n,</span> <span class="pre">input_shape)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of training samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X_test.shape</span> <span class="pre">==</span> <span class="pre">(m,</span> <span class="pre">input_shape)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of test samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y_train.shape</span> <span class="pre">==</span> <span class="pre">(n,)</span></code> and <code class="docutils literal notranslate"><span class="pre">Y_test.shape</span> <span class="pre">==</span> <span class="pre">(m,)</span></code>.</p></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<p><em>All</em> the above data members should be properly initialized <em>before</em> the use    of the provided methods. Otherwise, the methods behavior is unkown.</p>
+<section id="methods">
+<h3>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.adhoc_loss">
+<span class="sig-name descname"><span class="pre">adhoc_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.adhoc_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+<p><strong>Outputs:</strong></p>
+<p>The loss measured on the given input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.adhoc_accuracy">
+<span class="sig-name descname"><span class="pre">adhoc_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.adhoc_accuracy" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+<p><strong>Outputs:</strong></p>
+<p>The accuracy measured on the given input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.scores">
+<span class="sig-name descname"><span class="pre">scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.scores" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_dim</span></code> is the MLP’s output dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+<p><strong>Outputs:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">S</span></code>, a tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">out_dim)</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensive report to stdout.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.report2file">
+<span class="sig-name descname"><span class="pre">report2file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.report2file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensive report to file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.export2onnx">
+<span class="sig-name descname"><span class="pre">export2onnx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onnx_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.export2onnx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the MLP as <a class="reference external" href="https://github.com/onnx">Open Neural Network eXchange (ONNX)</a>
+format.</p>
+<p><strong>Input:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">onnx_path:</span> <span class="pre">str</span></code>, the path to save the <code class="docutils literal notranslate"><span class="pre">.onnx</span></code> file.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The path <em>must</em> have the suffix <code class="docutils literal notranslate"><span class="pre">.onnx</span></code>.</p></li>
+<li><p>Default value is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">overwrite:</span> <span class="pre">bool</span></code>, overwrites the <code class="docutils literal notranslate"><span class="pre">.onnx</span></code> even if exists.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default value is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">onnx_path</span> <span class="pre">!=</span> <span class="pre">None</span></code>, then the exported file is saved to the given path.</p></li>
+<li><p>Otherwise, the exported file is saved to the path <code class="docutils literal notranslate"><span class="pre">./&lt;self.name&gt;/&lt;self.name&gt;.onnx</span></code>.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.get_weights">
+<span class="sig-name descname"><span class="pre">get_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.get_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returning a tuple of the form <code class="docutils literal notranslate"><span class="pre">(Ws,</span> <span class="pre">bs)</span></code>, where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Ws</span> <span class="pre">=</span> <span class="pre">[W_0,</span> <span class="pre">W_1,</span> <span class="pre">...,</span> <span class="pre">W_L]</span></code> is a list of the weight matrices, and <code class="docutils literal notranslate"><span class="pre">W_i</span></code> is the weights of the i-th layer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bs</span> <span class="pre">=</span> <span class="pre">[b_0,</span> <span class="pre">b_1,</span> <span class="pre">...,</span> <span class="pre">b_L]</span></code> is a list of the bias vectors, and <code class="docutils literal notranslate"><span class="pre">b_i</span></code> is the bias of the i-th layer.</p></li>
+</ul>
+<p><strong>Notes:</strong></p>
+<p>The returned np.ndarrays are a <em>deep copy</em> of the originals. Namely,
+when modifying the returned matrices, this does <em>not</em> entail a
+modification of the MLP’s weights.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.set_weights">
+<span class="sig-name descname"><span class="pre">set_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.set_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting the weight and biases of the network, w.r.t. the given values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.export2csv">
+<span class="sig-name descname"><span class="pre">export2csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.export2csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the networks weights as simple <cite>.csv</cite> files, in the
+designated directory. The files follow the format bellow:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">W_&lt;layer&gt;.csv</span></code>, for the weight matrices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b_&lt;layer&gt;.csv</span></code>, for the bias vectors.</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">csv_dir:</span> <span class="pre">str</span></code>, the directory to save the csvs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the the directory doe not exists, it will be created.</p></li>
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">overwrite:</span> <span class="pre">bool</span></code>, overwrite existing files.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If set to true all the parameter files, of the form <code class="docutils literal notranslate"><span class="pre">&lt;W|b&gt;_&lt;number&gt;.csv</span></code> will be erased.</p></li>
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delim:</span> <span class="pre">str</span></code>, the delimeter to be used in the csvs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">default_delim</span></code>, the latter constant is set to a single space.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Naming Convention:</strong></p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;layer&gt;</span></code> id will be <em>always</em> of length <code class="docutils literal notranslate"><span class="pre">log(num_layers)</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E.g., for a MLP of <code class="docutils literal notranslate"><span class="pre">10</span></code> layers and the 3rd weight matrix, we will have <code class="docutils literal notranslate"><span class="pre">W_03.csv</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">csv_dir</span> <span class="pre">==</span> <span class="pre">None</span></code>, then the csvs will be located under <code class="docutils literal notranslate"><span class="pre">./&lt;self.name&gt;/</span></code>.</p></li>
+<li><p>It also supports directory hierarchy. If <code class="docutils literal notranslate"><span class="pre">csv_dir</span></code> is of the form <code class="docutils literal notranslate"><span class="pre">./&lt;dir1&gt;/&lt;dir2&gt;/</span> <span class="pre">...</span> <span class="pre">/&lt;dirn&gt;</span></code> all the indermediate dirs will be created.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.export2npz">
+<span class="sig-name descname"><span class="pre">export2npz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.export2npz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert to <code class="docutils literal notranslate"><span class="pre">.npz</span></code> format, a compresed collection of <code class="docutils literal notranslate"><span class="pre">.npy</span></code> files.
+<code class="docutils literal notranslate"><span class="pre">.npy</span></code> are binaries, supported by NumPy to store and retrieve matrices.
+There, we store the weight and bias matrices.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="perceptrons.abstract.MLPAbstract.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#perceptrons.abstract.MLPAbstract.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+</section>
+<section id="tensorflow-implementation">
+<h2>TensorFlow Implementation<a class="headerlink" href="#tensorflow-implementation" title="Permalink to this heading">¶</a></h2>
+<div class="graphviz"><img src="_images/inheritance-5706824472162bb5c69d1ba42d4bdddf26a285e3.png" alt="Inheritance diagram of perceptrons.tfmultilayer" usemap="#inheritance46fb28d446" class="inheritance graphviz" /></div>
+<map id="inheritance46fb28d446" name="inheritance46fb28d446">
+<area shape="rect" id="node1" href="#perceptrons.tfmultilayer.FromArchitecture" target="_top" title="FromArchitecture" alt="" coords="334,5,467,33"/>
+<area shape="rect" id="node2" href="#perceptrons.tfmultilayer.TFMLPBaseClass" target="_top" title="TFMLPBaseClass" alt="" coords="155,32,286,60"/>
+<area shape="rect" id="node4" href="#perceptrons.tfmultilayer.FromWeights" target="_top" title="FromWeights" alt="" coords="348,57,454,85"/>
+<area shape="rect" id="node3" href="#perceptrons.tfmultilayer.FromDir" target="_top" title="FromDir" alt="" coords="533,31,606,58"/>
+<area shape="rect" id="node5" href="#perceptrons.tfmultilayer.FromRandom" target="_top" title="FromRandom" alt="" coords="515,83,624,110"/>
+<area shape="rect" id="node6" href="#perceptrons.abstract.MLPAbstract" target="_top" title="The Base Class for Multilayered Perceptrons. This class models a specific" alt="" coords="5,5,107,33"/>
+</map><span class="target" id="module-perceptrons.tfmultilayer"></span><dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.tfmultilayer.</span></span><span class="sig-name descname"><span class="pre">TFMLPBaseClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#perceptrons.abstract.MLPAbstract" title="perceptrons.abstract.MLPAbstract"><code class="xref py py-class docutils literal notranslate"><span class="pre">MLPAbstract</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequential</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.adhoc_loss">
+<span class="sig-name descname"><span class="pre">adhoc_loss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.adhoc_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+<p><strong>Outputs:</strong></p>
+<p>The loss measured on the given input.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.scores">
+<span class="sig-name descname"><span class="pre">scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.scores" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Dimensions:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code>, the number of samples.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_dim</span></code>, the MLP’s input dimention (shape)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_dim</span></code> is the MLP’s output dimention (shape)</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code>, tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">in_dim)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y</span></code>,tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,)</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Y</span></code> should be a vector of the integer labels.</p>
+<p><strong>Outputs:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">S</span></code>, a tensor with shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">out_dim)</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensive report to stdout.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.report2file">
+<span class="sig-name descname"><span class="pre">report2file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.report2file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extensive report to file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.export2onnx">
+<span class="sig-name descname"><span class="pre">export2onnx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">onnx_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.export2onnx" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper of <cite>tf2onnx.convert.from_keras()</cite>, see
+<a class="reference external" href="https://github.com/onnx/tensorflow-onnx">here</a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.export2csv">
+<span class="sig-name descname"><span class="pre">export2csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.export2csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exports the networks weights as simple <cite>.csv</cite> files, in the
+designated directory. The files follow the format bellow:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">W_&lt;layer&gt;.csv</span></code>, for the weight matrices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b_&lt;layer&gt;.csv</span></code>, for the bias vectors.</p></li>
+</ul>
+<p><strong>Inputs:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">csv_dir:</span> <span class="pre">str</span></code>, the directory to save the csvs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If the the directory doe not exists, it will be created.</p></li>
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">overwrite:</span> <span class="pre">bool</span></code>, overwrite existing files.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If set to true all the parameter files, of the form <code class="docutils literal notranslate"><span class="pre">&lt;W|b&gt;_&lt;number&gt;.csv</span></code> will be erased.</p></li>
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delim:</span> <span class="pre">str</span></code>, the delimeter to be used in the csvs.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default value: <code class="docutils literal notranslate"><span class="pre">default_delim</span></code>, the latter constant is set to a single space.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Naming Convention:</strong></p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;layer&gt;</span></code> id will be <em>always</em> of length <code class="docutils literal notranslate"><span class="pre">log(num_layers)</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E.g., for a MLP of <code class="docutils literal notranslate"><span class="pre">10</span></code> layers and the 3rd weight matrix, we will have <code class="docutils literal notranslate"><span class="pre">W_03.csv</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">csv_dir</span> <span class="pre">==</span> <span class="pre">None</span></code>, then the csvs will be located under <code class="docutils literal notranslate"><span class="pre">./&lt;self.name&gt;/</span></code>.</p></li>
+<li><p>It also supports directory hierarchy. If <code class="docutils literal notranslate"><span class="pre">csv_dir</span></code> is of the form <code class="docutils literal notranslate"><span class="pre">./&lt;dir1&gt;/&lt;dir2&gt;/</span> <span class="pre">...</span> <span class="pre">/&lt;dirn&gt;</span></code> all the indermediate dirs will be created.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.set_weights">
+<span class="sig-name descname"><span class="pre">set_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.set_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Setting the weight and biases of the network, w.r.t. the given values.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the model based on input shapes received.</p>
+<p>This is to be used for subclassed models, which do not know at instantiation
+time what their inputs look like.</p>
+<p>This method only exists for users who want to call <cite>model.build()</cite> in a
+standalone way (as a substitute for calling the model on real data to
+build it). It will never be called by the framework (and thus it will
+never throw unexpected errors in an unrelated workflow).</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>input_shape: Single tuple, TensorShape, or list/dict of shapes, where</dt><dd><p>shapes are tuples, integers, or TensorShapes.</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>ValueError:</dt><dd><ol class="arabic simple">
+<li><p>In case of invalid user-provided data (not of type tuple,
+list, TensorShape, or dict).</p></li>
+<li><p>If the model requires call arguments that are agnostic
+to the input shapes (positional or kwarg in call signature).</p></li>
+<li><p>If not all layers were properly built.</p></li>
+<li><p>If float type inputs are not supported within the layers.</p></li>
+</ol>
+</dd>
+</dl>
+<p>In each of these cases, the user should build their model by calling it
+on real tensor data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.propagate_bounds">
+<span class="sig-name descname"><span class="pre">propagate_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="geometry.html#geometry.interval.Interval" title="geometry.interval.Interval"><span class="pre">Interval</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="geometry.html#geometry.interval.Interval" title="geometry.interval.Interval"><span class="pre">Interval</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="geometry.html#geometry.interval.Interval" title="geometry.interval.Interval"><span class="pre">Interval</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.propagate_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The simple bound propagation algorithm, appeared in:
+[Li et al., (IEEE TDSC 2022)], [Liu et al., (ICML 2019)] and
+[Gowal et al., (2018)]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.TFMLPBaseClass.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.TFMLPBaseClass.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromArchitecture">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.tfmultilayer.</span></span><span class="sig-name descname"><span class="pre">FromArchitecture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromArchitecture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass" title="perceptrons.tfmultilayer.TFMLPBaseClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">TFMLPBaseClass</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromArchitecture.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromArchitecture.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a MLP using architecture parameters, i.e.</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">architecture:</span> <span class="pre">List[int]</span></code>, a list of dimentions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape:</span> <span class="pre">Tuple[int]</span></code>, the shape on the inputs before flattening.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">str</span></code>, the name of the MLP.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">multilayered-perceptron</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">activation:</span> <span class="pre">bool</span></code>, a flag to either enable or disable the <code class="docutils literal notranslate"><span class="pre">relu</span></code> activations.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromArchitecture.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromArchitecture.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromWeights">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.tfmultilayer.</span></span><span class="sig-name descname"><span class="pre">FromWeights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromWeights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#perceptrons.tfmultilayer.TFMLPBaseClass" title="perceptrons.tfmultilayer.TFMLPBaseClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">TFMLPBaseClass</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromWeights.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">biases</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromWeights.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a MLP from a list of weights and biases.</p>
+<p><strong>Inputs:</strong></p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">Weights:</span> <span class="pre">List[np.ndarray]</span></code>, a list of weights.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">biases:</span> <span class="pre">List[np.ndarray]</span></code>, a list of biases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape:</span> <span class="pre">Tuple[int]</span></code>, the shape on the inputs before flattening.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">str</span></code>, the name of the MLP.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <cite>multilayered-perceptron</cite>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">activation:</span> <span class="pre">bool</span></code>, a flag to either enable or disable the <code class="docutils literal notranslate"><span class="pre">relu</span></code> activations.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromWeights.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromWeights.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromDir">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.tfmultilayer.</span></span><span class="sig-name descname"><span class="pre">FromDir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#perceptrons.tfmultilayer.FromWeights" title="perceptrons.tfmultilayer.FromWeights"><code class="xref py py-class docutils literal notranslate"><span class="pre">FromWeights</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromDir.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromDir.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a MLP from a dir of csv files:</p>
+<p><strong>Inputs:</strong></p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">dir_path:</span> <span class="pre">str</span></code>, the path to the diractory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape:</span> <span class="pre">Tuple[int]</span></code>, the shape on the inputs before flattening.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delim:</span> <span class="pre">str</span></code>, the delimiter for the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">activation:</span> <span class="pre">bool</span></code>, a flag to either enable or disable the <code class="docutils literal notranslate"><span class="pre">relu</span></code> activations.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromDir.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromDir.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromRandom">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">perceptrons.tfmultilayer.</span></span><span class="sig-name descname"><span class="pre">FromRandom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromRandom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#perceptrons.tfmultilayer.FromWeights" title="perceptrons.tfmultilayer.FromWeights"><code class="xref py py-class docutils literal notranslate"><span class="pre">FromWeights</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromRandom.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">architecture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'multilayered-perceptron'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromRandom.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creating a MLP from random weight matrices.</p>
+<p><strong>Inputs:</strong></p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">architecture:</span> <span class="pre">List[int]</span></code>, a list of each layer output dimensions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape:</span> <span class="pre">Tuple[int]</span></code>, the input shape.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">int</span></code>, the seed for the random number generator.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">seed</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">str</span></code>, the name of the MLP.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">name</span> <span class="pre">=</span> <span class="pre">&quot;multilayered-perceptron&quot;</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">activation:</span> <span class="pre">bool</span></code>, a flag to either enable or disable the <code class="docutils literal notranslate"><span class="pre">relu</span></code> activations.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Default Value: <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p><strong>Notes:</strong></p>
+<p>The weights and biases take values in <code class="docutils literal notranslate"><span class="pre">[-1,</span> <span class="pre">1]</span></code>, w.r.t. their shape.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="perceptrons.tfmultilayer.FromRandom.__subclasshook__">
+<span class="sig-name descname"><span class="pre">__subclasshook__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#perceptrons.tfmultilayer.FromRandom.__subclasshook__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract classes can override this to customize issubclass().</p>
+<p>This is invoked early on by abc.ABCMeta.__subclasscheck__().
+It should return True, False or NotImplemented.  If it returns
+NotImplemented, the normal algorithm is used.  Otherwise, it
+overrides the normal algorithm (and the outcome is cached).</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="verification.html" class="btn btn-neutral float-left" title="Verification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Merkouris Papamichail.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
