@@ -1,0 +1,32 @@
+.. ParallelepipedoNN documentation master file, created by
+   sphinx-quickstart on Tue May  5 13:14:13 2026.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. image:: /_static/logo-parallel.png
+|
+| *A software framework for optimizing on Interval Robustness Certifications for Multilayer Perceptrons.*
+|
+Welcome to ParallelepipedoNN's documentation!
+=============================================
+| (under construction)
+
+.. toctree::
+   :maxdepth: 3
+
+   install
+   geometry
+   guarantees
+   algorithms
+   verification
+   perceptrons
+
+   :caption: Contents:
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

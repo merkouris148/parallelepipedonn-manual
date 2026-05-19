@@ -1,0 +1,23 @@
+===========
+Perceptrons
+===========
+
+Abstract Multilayer Perceptrons
+-------------------------------
+
+.. automodule:: perceptrons.abstract
+    :members:
+    :special-members:
+    :show-inheritance:
+
+TensorFlow Implementation
+-------------------------
+
+.. inheritance-diagram:: perceptrons.tfmultilayer
+   :top-classes: perceptrons.abstract.MLPAbstract, tensorflow.python.keras.engine.sequential.Sequential
+   :parts: 1
+
+.. automodule:: perceptrons.tfmultilayer
+    :members:
+    :special-members:
+    :show-inheritance:

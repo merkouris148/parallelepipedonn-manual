@@ -1,0 +1,9 @@
+<map id="inheritancea1544d654f" name="inheritancea1544d654f">
+<area shape="rect" id="node1" href="#algorithms.parallelepipedal.BottomUpBFS" target="_top" title="#### Description:" alt="" coords="424,5,531,32"/>
+<area shape="rect" id="node2" href="#algorithms.parallelepipedal.ParallelepipedalSearch" target="_top" title="Description:" alt="" coords="175,105,338,132"/>
+<area shape="rect" id="node3" href="#algorithms.parallelepipedal.BottomUpDichotomicDFS" target="_top" title="* A search algorithm implementing a bottom up dichotomic search in" alt="" coords="388,55,567,82"/>
+<area shape="rect" id="node4" href="#algorithms.parallelepipedal.BottomUpLinearDFS" target="_top" title="Description:" alt="" coords="404,105,551,132"/>
+<area shape="rect" id="node5" href="#algorithms.parallelepipedal.CompleteBottomUpSearch" target="_top" title="Description:" alt="" coords="384,155,571,182"/>
+<area shape="rect" id="node7" href="#algorithms.parallelepipedal.TopDownSearch" target="_top" title="Description:" alt="" coords="418,205,537,231"/>
+<area shape="rect" id="node6" title="#### Description:" alt="" coords="5,105,129,132"/>
+</map>

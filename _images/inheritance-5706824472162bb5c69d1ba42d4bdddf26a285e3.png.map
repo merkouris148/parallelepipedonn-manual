@@ -1,0 +1,9 @@
+<map id="inheritance46fb28d446" name="inheritance46fb28d446">
+<area shape="rect" id="node1" href="#perceptrons.tfmultilayer.FromArchitecture" target="_top" title="FromArchitecture" alt="" coords="334,5,467,33"/>
+<area shape="rect" id="node2" href="#perceptrons.tfmultilayer.TFMLPBaseClass" target="_top" title="TFMLPBaseClass" alt="" coords="155,32,286,60"/>
+<area shape="rect" id="node4" href="#perceptrons.tfmultilayer.FromWeights" target="_top" title="FromWeights" alt="" coords="348,57,454,85"/>
+<area shape="rect" id="node3" href="#perceptrons.tfmultilayer.FromDir" target="_top" title="FromDir" alt="" coords="533,31,606,58"/>
+<area shape="rect" id="node5" href="#perceptrons.tfmultilayer.FromRandom" target="_top" title="FromRandom" alt="" coords="515,83,624,110"/>
+<area shape="rect" id="node6" href="#perceptrons.abstract.MLPAbstract" target="_top" title="The Base Class for Multilayered Perceptrons. This class models a specific" alt="" coords="5,5,107,33"/>
+<area shape="rect" id="node7" title="`Sequential` groups a linear stack of layers into a `tf.keras.Model`." alt="" coords="11,57,101,85"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="inheritance659a49353e" name="inheritance659a49353e">
+<area shape="rect" id="node1" href="#guarantees.cyclic.BottomCyclicGuarantee" target="_top" title="BottomCyclicGuarantee" alt="" coords="404,5,571,31"/>
+<area shape="rect" id="node2" href="#guarantees.cyclic.CyclicGuarantee" target="_top" title="CyclicGuarantee" alt="" coords="236,30,358,57"/>
+<area shape="rect" id="node5" href="#guarantees.cyclic.TopCyclicGuarantee" target="_top" title="TopCyclicGuarantee" alt="" coords="416,54,559,81"/>
+<area shape="rect" id="node3" href="geometry.html#geometry.circle.Circle" target="_top" title="* The base class for circles." alt="" coords="5,30,73,57"/>
+<area shape="rect" id="node4" href="geometry.html#geometry.circle.InfCircle" target="_top" title="* The infinity&#45;norm circle." alt="" coords="119,30,191,57"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="inheritancec796bab567" name="inheritancec796bab567">
+<area shape="rect" id="node1" href="#perceptrons.tfmultilayer.TFMLPBaseClass" target="_top" title="Base neural network module class." alt="" coords="245,127,297,145"/>
+<area shape="rect" id="node7" title="This is the class from which all layers inherit." alt="" coords="395,89,447,109"/>
+<area shape="rect" id="node2" title="`Sequential` groups a linear stack of layers into a `tf.keras.Model`." alt="" coords="699,108,764,128"/>
+<area shape="rect" id="node3" title="Manages dependencies on other objects." alt="" coords="98,126,179,146"/>
+<area shape="rect" id="node4" title="Base class for `Trackable` objects without automatic dependencies." alt="" coords="4,126,63,146"/>
+<area shape="rect" id="node5" title="A `Functional` model is a `Model` defined as a directed graph of layers." alt="" coords="601,89,664,109"/>
+<area shape="rect" id="node6" title="`Model` groups layers into an object with training and inference features." alt="" coords="514,89,566,109"/>
+<area shape="rect" id="node8" title="Chooses between Keras v1 and v2 Layer class." alt="" coords="214,4,328,24"/>
+<area shape="rect" id="node9" title="Chooses between Keras v1 and v2 Model class." alt="" coords="362,52,479,72"/>
+</map>

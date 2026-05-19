@@ -1,0 +1,19 @@
+<map id="inheritance7f276d470a" name="inheritance7f276d470a">
+<area shape="rect" id="node1" href="#perceptrons.abstract.MLPAbstract" target="_top" title="The Base Class for Multilayered Perceptrons. This class models a specific" alt="" coords="515,21,561,26"/>
+<area shape="rect" id="node4" href="#perceptrons.tfmultilayer.TFMLPBaseClass" target="_top" title="perceptrons.tfmultilayer.TFMLPBaseClass" alt="" coords="583,16,640,21"/>
+<area shape="rect" id="node2" title="Base class for protocol classes." alt="" coords="447,21,470,26"/>
+<area shape="rect" id="node3" href="#perceptrons.tfmultilayer.FromArchitecture" target="_top" title="perceptrons.tfmultilayer.FromArchitecture" alt="" coords="649,11,706,16"/>
+<area shape="rect" id="node6" href="#perceptrons.tfmultilayer.FromWeights" target="_top" title="perceptrons.tfmultilayer.FromWeights" alt="" coords="652,21,703,26"/>
+<area shape="rect" id="node5" href="#perceptrons.tfmultilayer.FromDir" target="_top" title="perceptrons.tfmultilayer.FromDir" alt="" coords="718,16,764,21"/>
+<area shape="rect" id="node7" href="#perceptrons.tfmultilayer.FromRandom" target="_top" title="perceptrons.tfmultilayer.FromRandom" alt="" coords="715,26,767,31"/>
+<area shape="rect" id="node8" title="`Sequential` groups a linear stack of layers into a `tf.keras.Model`." alt="" coords="503,11,574,16"/>
+<area shape="rect" id="node9" title="This is the class from which all layers inherit." alt="" coords="267,6,333,11"/>
+<area shape="rect" id="node13" title="`Model` groups layers into an object with training and inference features." alt="" coords="352,11,414,16"/>
+<area shape="rect" id="node10" title="Base neural network module class." alt="" coords="178,1,235,6"/>
+<area shape="rect" id="node11" title="Chooses between Keras v1 and v2 Layer class." alt="" coords="164,11,248,16"/>
+<area shape="rect" id="node12" title="A `Functional` model is a `Model` defined as a directed graph of layers." alt="" coords="423,11,493,16"/>
+<area shape="rect" id="node14" title="Chooses between Keras v1 and v2 Model class." alt="" coords="257,16,342,21"/>
+<area shape="rect" id="node15" title="Manages dependencies on other objects." alt="" coords="78,1,155,6"/>
+<area shape="rect" id="node16" title="Base class for `Trackable` objects without automatic dependencies." alt="" coords="1,1,68,6"/>
+<area shape="rect" id="node17" title="Abstract base class for generic types." alt="" coords="372,21,394,26"/>
+</map>

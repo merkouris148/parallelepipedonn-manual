@@ -1,0 +1,24 @@
+Algorithms
+==========
+
+The supported algorithms.
+
+Parallepipedal Algorithms
+-------------------------
+
+.. inheritance-diagram:: algorithms.parallelepipedal
+   :parts: 1
+
+.. automodule:: algorithms.parallelepipedal
+    :members:
+    :special-members:
+
+Cyclic Algorithms
+-----------------
+
+.. inheritance-diagram:: algorithms.cyclic
+   :parts: 1
+
+.. automodule:: algorithms.cyclic
+    :members:
+    :special-members:

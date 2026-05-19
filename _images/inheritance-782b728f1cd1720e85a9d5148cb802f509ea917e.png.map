@@ -1,0 +1,9 @@
+<map id="inheritancef7863675e8" name="inheritancef7863675e8">
+<area shape="rect" id="node1" href="#guarantees.parallelepipedal.BottomDistParallelGurantee" target="_top" title="BottomDistParallelGurantee" alt="" coords="568,5,763,32"/>
+<area shape="rect" id="node2" href="#guarantees.parallelepipedal.DistParallelGurantee" target="_top" title="DistParallelGurantee" alt="" coords="362,29,511,56"/>
+<area shape="rect" id="node6" href="#guarantees.parallelepipedal.TopDistParallelGurantee" target="_top" title="TopDistParallelGurantee" alt="" coords="580,55,750,82"/>
+<area shape="rect" id="node3" href="#guarantees.parallelepipedal.BottomParallelGurantee" target="_top" title="BottomParallelGurantee" alt="" coords="352,79,522,106"/>
+<area shape="rect" id="node4" href="#guarantees.parallelepipedal.ParallelepipedalGuarantee" target="_top" title="**Description:**" alt="" coords="120,79,306,106"/>
+<area shape="rect" id="node7" href="#guarantees.parallelepipedal.TopParallelGuarantee" target="_top" title="TopParallelGuarantee" alt="" coords="360,129,513,156"/>
+<area shape="rect" id="node5" href="geometry.html#geometry.interval.Interval" target="_top" title="A class encoding a *high&#45;dimensional* interval ``[lb, ub]``, where" alt="" coords="5,79,74,106"/>
+</map>

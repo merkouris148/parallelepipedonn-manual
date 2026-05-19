@@ -1,0 +1,24 @@
+Guarantees
+==========
+
+Families of interval certifications.
+
+Parallepipedal Guarantees
+-------------------------
+
+.. inheritance-diagram:: guarantees.parallelepipedal
+   :parts: 1
+
+.. automodule:: guarantees.parallelepipedal
+    :members:
+    :special-members:
+
+Cyclic Guarantees
+-----------------
+
+.. inheritance-diagram:: guarantees.cyclic
+   :parts: 1
+
+.. automodule:: guarantees.cyclic
+    :members:
+    :special-members:

@@ -1,0 +1,5 @@
+<map id="inheritance0bad84b20b" name="inheritance0bad84b20b">
+<area shape="rect" id="node1" title="Abstract base class for generic types." alt="" coords="5,5,77,33"/>
+<area shape="rect" id="node3" title="Base class for protocol classes." alt="" coords="125,5,200,33"/>
+<area shape="rect" id="node2" href="#perceptrons.abstract.MLPAbstract" target="_top" title="The Base Class for Multilayered Perceptrons. This class models a specific" alt="" coords="248,5,349,33"/>
+</map>

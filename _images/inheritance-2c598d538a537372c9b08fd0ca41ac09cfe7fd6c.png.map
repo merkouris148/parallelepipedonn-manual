@@ -1,0 +1,17 @@
+<map id="inheritance72892288f9" name="inheritance72892288f9">
+<area shape="rect" id="node1" href="#perceptrons.abstract.MLPAbstract" target="_top" title="The Base Class for Multilayered Perceptrons. This class models a specific" alt="" coords="515,1,561,6"/>
+<area shape="rect" id="node3" href="#perceptrons.tfmultilayer.TFMLPBaseClass" target="_top" title="perceptrons.tfmultilayer.TFMLPBaseClass" alt="" coords="583,6,640,12"/>
+<area shape="rect" id="node2" href="#perceptrons.tfmultilayer.FromArchitecture" target="_top" title="perceptrons.tfmultilayer.FromArchitecture" alt="" coords="649,1,706,6"/>
+<area shape="rect" id="node5" href="#perceptrons.tfmultilayer.FromWeights" target="_top" title="perceptrons.tfmultilayer.FromWeights" alt="" coords="652,11,703,16"/>
+<area shape="rect" id="node4" href="#perceptrons.tfmultilayer.FromDir" target="_top" title="perceptrons.tfmultilayer.FromDir" alt="" coords="718,6,764,11"/>
+<area shape="rect" id="node6" href="#perceptrons.tfmultilayer.FromRandom" target="_top" title="perceptrons.tfmultilayer.FromRandom" alt="" coords="715,16,767,21"/>
+<area shape="rect" id="node7" title="`Sequential` groups a linear stack of layers into a `tf.keras.Model`." alt="" coords="503,11,574,16"/>
+<area shape="rect" id="node8" title="This is the class from which all layers inherit." alt="" coords="267,6,333,11"/>
+<area shape="rect" id="node12" title="`Model` groups layers into an object with training and inference features." alt="" coords="352,11,414,16"/>
+<area shape="rect" id="node9" title="Base neural network module class." alt="" coords="178,1,235,6"/>
+<area shape="rect" id="node10" title="Chooses between Keras v1 and v2 Layer class." alt="" coords="164,11,248,16"/>
+<area shape="rect" id="node11" title="A `Functional` model is a `Model` defined as a directed graph of layers." alt="" coords="423,11,493,16"/>
+<area shape="rect" id="node13" title="Chooses between Keras v1 and v2 Model class." alt="" coords="257,16,342,21"/>
+<area shape="rect" id="node14" title="Manages dependencies on other objects." alt="" coords="78,1,155,6"/>
+<area shape="rect" id="node15" title="Base class for `Trackable` objects without automatic dependencies." alt="" coords="1,1,68,6"/>
+</map>
